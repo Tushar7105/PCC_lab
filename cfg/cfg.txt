@@ -1,0 +1,19 @@
+Start → TranslationUnit
+TranslationUnit → ExternalDeclaration | TranslationUnit ExternalDeclaration
+ExternalDeclaration → FunctionDefinition | Declaration
+FunctionDefinition → DeclarationSpecifiers Declarator CompoundStatement
+Declaration → DeclarationSpecifiers ';' | DeclarationSpecifiers InitDeclaratorList ';'
+DeclarationSpecifiers → TypeSpecifier
+InitDeclaratorList → InitDeclarator | InitDeclaratorList ',' InitDeclarator
+InitDeclarator → Declarator | Declarator '=' Initializer
+TypeSpecifier → VOID | CHAR | INT | FLOAT | DOUBLE
+Declarator → DirectDeclarator
+DirectDeclarator → IDENTIFIER | DirectDeclarator '[' ']' | DirectDeclarator '(' ')'
+Initializer → AssignmentExpression
+CompoundStatement → '{' '}' | '{' StatementList '}'
+StatementList → Statement | StatementList Statement
+Statement → ExpressionStatement | CompoundStatement | SelectionStatement | IterationStatement | JumpStatement
+ExpressionStatement → ';' | Expression ';'
+SelectionStatement → IF '(' Expression ')' Statement | IF '(' Expression ')' Statement ELSE Statement
+IterationStatement → WHILE '(' Expression ')' Statement | FOR '(' ExpressionStatement ExpressionStatement ')' Statement
+JumpStatement → RETURN ';' | RETURN Expression ';
